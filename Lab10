@@ -1,0 +1,39 @@
+import tkinter as tk
+
+data =0
+def ex1():
+    file = "Marvel.txt"
+    fileObject = open(file)
+    text_box.delete("1.0", "end")
+    data = fileObject.read()
+
+    text_box.insert("end",data )
+
+def calculate_freqs():
+    file = "Marvel.txt"
+    fileObject = open(file)
+    text_box.delete("1.0", "end")
+    n = fileObject.read().split()
+    words = []
+    for i in n:
+        if i not in words:
+            words.append(i)
+    for i in range(len(words)):
+        text_box.insert("end",str(n.count(words[i])) + " times " + str(words[i]) + "\n")
+
+window = tk.Tk()
+window.title("Kaan")
+text_box = tk.Text(
+    window,
+    height=12,
+    width=40
+)
+text_box.pack(expand=True)
+text_box.pack()
+button = tk.Button(master= window,text= "read", width= 25, command=lambda : ex1()
+, font= ("Helvetica", 20))
+button2 = tk.Button(master= window,text= "calculate", width= 25, command=lambda : calculate_freqs()
+, font= ("Helvetica", 20))
+button.pack()
+button2.pack()
+window.mainloop()
